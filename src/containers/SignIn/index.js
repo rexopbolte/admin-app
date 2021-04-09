@@ -1,17 +1,23 @@
 import React from 'react'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Container, Form, Button, Row, Col } from 'react-bootstrap'
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector, } from 'react-redux';
 import Layout from '../../components/layout'
 import Input from '../../components/layout/UI/Input'
 import { login } from '../../actions';
+import { Redirect } from 'react-router';
+
 
 function SignIn(props) {
 
     const [email, setEmail] = useState('');
     const [password, setpassword] = useState('')
     const [error, seterror] = useState('')
+    const auth = useSelector(state => state.auth);
+
     const dispatch = useDispatch();
+
+
 
     const userLogin = (e) => {
 
@@ -24,6 +30,10 @@ function SignIn(props) {
         }
 
         dispatch(login(user));
+    }
+
+    if (auth.authenticate) {
+        return <Redirect to={`/`} />
     }
     return (
         <Layout>
