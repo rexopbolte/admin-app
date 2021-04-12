@@ -14,11 +14,13 @@ export const signup = (user) => {
         })
 
         if (res.status === 200) {
-            const { message } = res.data.message;
+            const { token, user } = res.data;
+            localStorage.setItem('token', token);
+            localStorage.setItem('user', JSON.stringify(user));
             dispatch({
                 type: userConstant.USER_REGISTER_SUCCESS,
                 payload: {
-                    message
+                    token, user
                 }
             })
 

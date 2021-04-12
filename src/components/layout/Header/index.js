@@ -5,7 +5,6 @@ import { NavLink, Link } from 'react-router-dom'
 import { signout } from '../../../actions';
 
 function Header() {
-
     const auth = useSelector(state => state.auth);
     const dispatch = useDispatch();
     const logout = () => {
@@ -47,9 +46,7 @@ function Header() {
                 <Navbar.Collapse id="responsive-navbar-nav">
                     <Nav className="mr-auto">
                     </Nav>
-                    {
-                        auth.authenticate ? renderLoggedInLinks() : renderNonLoggedInLinks()
-                    }
+                    {auth.authenticate ? renderLoggedInLinks() : renderNonLoggedInLinks()}
 
                 </Navbar.Collapse>
             </Container>
